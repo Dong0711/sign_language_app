@@ -1,4 +1,4 @@
-from DAO import database_layer,database_layer_sqlite
+from DAO import database_layer_sqlite
 from PyQt6.QtWidgets import QListWidget,QListWidgetItem
 from PyQt6.QtGui import QStandardItemModel,QStandardItem
 from PyQt6.QtGui import QFont
@@ -7,7 +7,6 @@ from PyQt6.QtCore import QCoreApplication,QUrl
 
 class handle_tab_tu_diem:
     def __init__(self) -> None:
-        self.data_mysql=database_layer.database()
         self.data=database_layer_sqlite.DatabaseLayer()  
     def load_data_to_dic(self,list_view_tu_dien,):
         # data_tuple=self.data.execute_query(query)
