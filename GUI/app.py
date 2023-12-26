@@ -22,9 +22,7 @@ class Ui_Form(object):
         self.logoImage = QLabel(parent=self.widget)
         self.logoImage.setGeometry(QRect(0, 0, 351, 71))
         self.logoImage.setObjectName("logoImage")
-        self.btn_user = QPushButton(parent=self.widget)
-        self.btn_user.setGeometry(QRect(1160, 0, 111, 71))
-        self.btn_user.setObjectName("btn_user")
+       
         self.btn_dich = QPushButton(parent=self.widget)
         self.btn_dich.setGeometry(QRect(400, 20, 171, 41))
         font = QFont()
@@ -99,6 +97,8 @@ class Ui_Form(object):
         font.setWeight(75)
         self.btn_dich_tu.setFont(font)
         self.btn_dich_tu.setObjectName("btn_dich_tu")
+        self.btn_dich.setStyleSheet("\n"
+"background-color: rgb(100, 149, 237);")
         self.tabWidget.addTab(self.tab_dich, "")
         self.tab_tu_dien = QWidget()
         self.tab_tu_dien.setObjectName("tab_tu_dien")
@@ -115,7 +115,7 @@ class Ui_Form(object):
         self.video = QVideoWidget(parent=self.tab_tu_dien)
         self.mediaPlayer.setVideoOutput(self.video)
         self.mediaPlayer.setSource(QUrl.fromLocalFile('./assets/videos/W00042.webm'))
-        self.mediaPlayer.play()
+        
         self.mediaPlayer.setLoops(10)
         self.video.setGeometry(QRect(800, 40, 471, 441))
         self.video.setStyleSheet("background-color: rgb(0, 0, 127);")
@@ -154,6 +154,11 @@ class Ui_Form(object):
         self.scroll_area_lich_su.setGeometry(QRect(0, 0, 1271, 521))
         self.scroll_area_lich_su.setObjectName("scroll_area_lich_su")
         # self.scroll_area_lich_su.
+        self.btn_lich_su.setStyleSheet("\n"
+"background-color: rgb(173, 216, 230);")
+
+        self.btn_tu_dien.setStyleSheet("\n"
+"background-color: rgb(173, 216, 230);")
 
         self.tabWidget.addTab(self.tab_lich_su, "")
         self.retranslateUi(Form)
@@ -166,7 +171,6 @@ class Ui_Form(object):
         _translate = QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.logoImage.setText(_translate("Form", "<html><head/><body><p><img src=\"assets\images\logo.png\"/></p></body></html>"))
-        self.btn_user.setText(_translate("Form", "User"))
         self.btn_dich.setText(_translate("Form", "Dịch"))
         self.btn_tu_dien.setText(_translate("Form", "Từ điển"))
         self.btn_lich_su.setText(_translate("Form", "Lịch sử"))
@@ -197,9 +201,34 @@ class Ui_Form(object):
         
         self.label_dich.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:600;\"></span></p></body></html>", None))
     def change_tab(self,index):
-            print(index)
-            if(self.tabWidget.currentIndex()!=index):
-                self.tabWidget.setCurrentIndex(index)
+        if index==0:
+                    self.btn_dich.setStyleSheet("\n"
+"background-color: rgb(100, 149, 237);")
+                    self.btn_lich_su.setStyleSheet("\n"
+"background-color: rgb(173, 216, 230);")
+                    self.btn_tu_dien.setStyleSheet("\n"
+"background-color: rgb(173, 216, 230);")
+                    self.mediaPlayer.stop()
+                    
+        if index==1:
+                    self.btn_tu_dien.setStyleSheet("\n"
+"background-color: rgb(100, 149, 237);")
+                    self.btn_lich_su.setStyleSheet("\n"
+"background-color: rgb(173, 216, 230);")
+                    self.btn_dich.setStyleSheet("\n"
+"background-color: rgb(173, 216, 230);")
+                    self.mediaPlayer.play()
+        if index==2:
+                    self.btn_lich_su.setStyleSheet("\n"
+"background-color: rgb(100, 149, 237);")
+                    self.btn_tu_dien.setStyleSheet("\n"
+"background-color: rgb(173, 216, 230);")
+                    self.btn_dich.setStyleSheet("\n"
+"background-color: rgb(173, 216, 230);")
+                    self.mediaPlayer.stop()
+                    
+        if(self.tabWidget.currentIndex()!=index):
+            self.tabWidget.setCurrentIndex(index)
     def dich(self):
             if self.is_click==False:
                     self.sign_recogintion.start()
